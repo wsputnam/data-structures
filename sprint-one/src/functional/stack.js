@@ -7,7 +7,7 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
-    storage.count = value;
+    storage[count] = value;
     count++;
     return value;
   };
@@ -16,8 +16,8 @@ var Stack = function() {
     count--;
   
     //for (var key in storage) {
-    return storage[count+1];
-    delete storage[count+1];
+    return storage[count];
+    delete storage[count];
       //if (key === Object.keys(storage).length) {
        // someInstance[key] = storage[key];
        // return storage[key];

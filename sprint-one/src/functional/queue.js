@@ -8,7 +8,7 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    storage.counter = value;
+    storage[counter] = value;
     counter++;
     return value;
   };
@@ -17,6 +17,9 @@ var Queue = function() {
     counter--;
     return storage[0];
     delete storage[0];
+    for (var key in storage) {
+      key = (key - 1);
+    }
 
   };
 
