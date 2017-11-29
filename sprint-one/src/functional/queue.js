@@ -14,12 +14,12 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    counter--;
-    return storage[0];
-    delete storage[0];
-    for (var key in storage) {
-      key = (key - 1);
+    var popped = storage[0];
+    for (var i = 0; i <= counter; i++) {
+      storage[i] = storage[i + 1];
     }
+    counter--;
+    return popped;
 
   };
 
