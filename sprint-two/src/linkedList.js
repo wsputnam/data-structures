@@ -28,10 +28,11 @@ var LinkedList = function() {
     var find = function(node) {
       if (node.value === target) {
         return true;
+      } else {
+        find(node.next);
       }
-      find(node.next);
     };
-    return find(list.tail) || false; // so our next operation is adding 
+    return find(list.head) || false; // so our next operation is adding 
   };
   
   // need to return the list at the end of the function expression
