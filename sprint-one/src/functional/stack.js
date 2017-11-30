@@ -15,16 +15,8 @@ var Stack = function() {
   someInstance.pop = function() {
     count--;
   
-    //for (var key in storage) {
     return storage[count];
-    delete storage[count];
-      //if (key === Object.keys(storage).length) {
-       // someInstance[key] = storage[key];
-       // return storage[key];
-        //delete key;
-      //}
-    //}
-  };//
+  };
 
   someInstance.size = function() {
     if (count < 0 || count === undefined) {
