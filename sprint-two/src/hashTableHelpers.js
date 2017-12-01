@@ -12,6 +12,7 @@
 //   limitedArray.get(3); // returns 'hi'
 
 var LimitedArray = function(limit) {
+  //this stores indices created by hash function
   var storage = [];
 
   var limitedArray = {};
