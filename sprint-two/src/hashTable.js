@@ -48,6 +48,8 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
- */
+ Insert will always be constant (O(1)); Same for remove.
+Remove will be constant provided there are no collisions, or else they both become linear (O(n))
+*/
 
 
