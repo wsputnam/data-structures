@@ -16,10 +16,8 @@ setPrototype.add = function(item) {
 
 setPrototype.contains = function(item) {
   var setKeys = Object.keys(this._storage);
-  for (var i = 0; i < setKeys.length; i++) {
-    if (setKeys[i] === item) {
-      return true;
-    }
+  if (this._storage[item] !== undefined) {
+    return true;
   }
   return false;
 };
@@ -31,6 +29,6 @@ setPrototype.remove = function(item) {
 /*
  * Complexity: What is the time complexity of the above functions?
  add is O(1)
- contains is O(n)
+ contains is O(1)
  remove is O(1)
  */
