@@ -7,8 +7,9 @@ var LinkedList = function() {
     var newNode = Node(value);
     if (list.head === null) {
       list.head = newNode;
+      list.tail = newNode;
     }
-    newNode.next = list.tail;
+    list.tail.next = newNode;
     list.tail = newNode;
     
   };
@@ -25,14 +26,17 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-    var find = function(node) {
+    var find = function(node) {      
       if (node.value === target) {
         return true;
-      } else {
-        find(node.next);
+      } else if (node.next !== undefined && node.next !== null) {
+        if (find(node.next) === true) {
+          return true;
+        }
       }
-    };
-    return find(list.head) || false; // so our next operation is adding 
+      return false; // so our next operation is adding 
+    };    
+    return find(list.head);
   };
   
   // need to return the list at the end of the function expression
@@ -54,4 +58,47 @@ var Node = function(value) {
   for insertion and removal, constant time
   for contains, linear time
 
- */
+//  */
+
+// var LinkedList = function() {
+//   var list = {};
+//   list.head = null;
+//   list.tail = null;
+
+//   list.addToTail = function(value) {
+//     var newNode = Node(value);
+//     newNode.next = list.tail;
+//     list.tail = newNode;
+    
+//   };
+
+//   list.removeHead = function() {
+//     var head = list.head;
+//     list.head = list.head.next;
+//     return head.value;
+//   };
+
+//   list.contains = function(target) {
+//     var find = function(node) {
+//       if (node.value === target) {
+//         return true;
+//       } else {
+//         find(node.next);
+//       }
+//     };
+//     return find(list.head) || false; // so our next operation is adding 
+//   };
+  
+//   // need to return the list at the end of the function expression
+//   return list;
+// };
+
+
+// var Node = function(value) {
+//   var node = {};
+
+//   node.value = value;
+//   node.next = null;
+
+//   return node;
+// };
