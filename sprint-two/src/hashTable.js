@@ -3,15 +3,17 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
+  this._storage.collision = [];
 };
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  if (this._storage.get(index)) {
-    var arr = [];
-    arr.push(this._storage.get(index));
-    arr.push([k, v]);
-    this._storage.set(index, arr);
+  if (this._storage.get(index) && this._storage.get(index)[0] !== k) {
+    var newArr = [];
+    var current = this._storage.get(index);
+    newArr.push([k, v]);
+    newArr.push(current);
+    this._storage.set(index, newArr);
   } else {
     this._storage.set(index, [k, v]);
   }
@@ -19,14 +21,19 @@ HashTable.prototype.insert = function(k, v) {
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  if (this._storage.get(index).length > 1) {
-    this._storage.each(function(element) {
-      if (k === element[0]) {
-        return element[1];
-      }
-    });
-  } else {
-    return this._storage.get(index);
+  if (this._storage.get(index) !== undefined) {
+    if (Array.isArray(this._storage.get(index)[0])) {
+      var result;
+      var tuples = this._storage.get(index);
+      tuples.forEach(function(e) {
+        if (k === e[0]) {
+          result = e[1];
+        }
+      });
+      return result;
+    } else {
+      return this._storage.get(index)[1];
+    }
   }
   //if storage[index] is something
   //then search each node
