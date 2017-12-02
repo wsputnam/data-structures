@@ -50,6 +50,12 @@ describe('linkedList', function() {
     linkedList.removeHead();
     expect(linkedList.contains(4)).to.equal(false);
   });
+  
+  it('should not remove the last head', function() {
+    linkedList.addToTail(5);
+    linkedList.removeHead();
+    expect(linkedList.head.value).to.equal(5);
+  });
 
   // add more tests here to test the functionality of linkedList
 });

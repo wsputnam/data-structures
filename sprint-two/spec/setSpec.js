@@ -23,5 +23,11 @@ describe('set', function() {
     set.remove('Mel Gibson');
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
+  it('should test if a set contains an item', function() {
+    set.add('Mel Gibson');
+    set.add('Susan Sarandon');
+    expect(set.contains('Danny Glover')).to.equal(false);
+    expect(set.contains('Susan Sarandon')).to.equal(true);
+  });
 
 });
