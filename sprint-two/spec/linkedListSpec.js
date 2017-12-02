@@ -51,10 +51,18 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
   
-  it('should not remove the last head', function() {
-    linkedList.addToTail(5);
-    linkedList.removeHead();
-    expect(linkedList.head.value).to.equal(5);
+  // it('should not remove the last head', function() {
+  //   linkedList.addToTail(5);
+  //   linkedList.removeHead();
+  //   expect(linkedList.head.value).to.equal(5);
+  // });
+  
+  it('should insert a list within a list', function() {
+    var b = LinkedList();
+    b.addToTail(1);
+    b.addToTail(4);
+    linkedList.addToTail(b);
+    expect(linkedList.contains(b)).to.equal(true);
   });
 
   // add more tests here to test the functionality of linkedList

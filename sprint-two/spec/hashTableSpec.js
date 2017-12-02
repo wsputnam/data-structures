@@ -46,6 +46,12 @@ describe('hashTable', function() {
     expect(hashTable.retrieve(v2)).to.equal(v2);
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
+  
+  it('should accept a linked list as a value', function() {
+    var list = LinkedList();
+    hashTable.insert('list', list);
+    expect(hashTable.retrieve('list')).to.equal(list);
+  });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {

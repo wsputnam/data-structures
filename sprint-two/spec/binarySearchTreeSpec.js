@@ -37,4 +37,10 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+  
+  it('should not insert string values', function() {
+    binarySearchTree.insert(4);
+    binarySearchTree.insert('a');
+    expect(binarySearchTree.contains('a')).to.equal(false);
+  });
 });
