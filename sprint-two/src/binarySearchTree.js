@@ -38,7 +38,6 @@ bstMethods.insert = function(value) {
 
  // do not add equal values as we do not want duplicates
 
-  //newTree.push(value);
   
 };
 
@@ -60,26 +59,12 @@ bstMethods.contains = function(target) {
     }
   }
   return false;
-  // if ((this.left !== null && this.left.value === target) || (this.right !== null && this.right.value === target)) {
-  //   return true;
-  // } else {
-  //   return false;
-  // }
-
- // if this.value < target, look left
-// if this.value > target, look right
-// else return false
 
   
 };
 
 bstMethods.depthFirstLog = function(callback) {
-  // iterate through whole tree
-  //get an array of values in tree
-  //loop with for loop
-  //for each [i] execute function
-  // loop through this.value, and this.right and this.left
-  // if those aren't null, apply function
+
   callback(this.value); // this.value = this.value*2;
   if (this.left !== null) {
     bstMethods.depthFirstLog.call(this.left, callback);

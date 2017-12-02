@@ -42,9 +42,13 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 Graph.prototype.addEdge = function(fromNode, toNode) {
   // var firstNode = this.nodes.indexOf(fromNode);
   // fromNode.push(edges);
-  // toNode[1].push(fromNode);
-  if (this.nodes.indexOf(fromNode) !== -1 && this.nodes.indexOf(toNode) !== -1) {
+  if (this.hasEdge.apply(this, arguments)) {
+    return this.nodes;
+  } else if (this.nodes.indexOf(fromNode) !== -1 && this.nodes.indexOf(toNode) !== -1) {
     this.edges.push(JSON.stringify([fromNode, toNode])); 
+  }
+  if (fromNode === toNode) {
+    return false;
   }
 };
 
@@ -62,9 +66,9 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
-  this.nodes.forEach(function(node) {
-    cb(node);
-  });
+  for (var i = 0; i < this.nodes.length; i++) {
+    cb(this.nodes[i]);
+  }
 };
 
 /*

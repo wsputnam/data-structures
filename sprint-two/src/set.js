@@ -1,6 +1,6 @@
 var Set = function() {
   var set = Object.create(setPrototype);
-  set._storage = {}; // fix me
+  set._storage = {}; 
   return set;
 };
 
@@ -15,7 +15,6 @@ setPrototype.add = function(item) {
 };
 
 setPrototype.contains = function(item) {
-  var setKeys = Object.keys(this._storage);
   if (this._storage[item] !== undefined) {
     return true;
   }

@@ -16,10 +16,14 @@ var LinkedList = function() {
 
   list.removeHead = function() {
     var head = list.head;
+    if (list.head.next === null || list.head.next === undefined) {
+      list.head = null;
+      list.tail = null;
+    }
     if (list.head.next !== null) {
       list.head = list.head.next;
     } else {
-      list.head = list.tail;
+      list.head = null;
     }
 
     return head.value;
