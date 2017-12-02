@@ -1,13 +1,26 @@
 
 
 var HashTable = function() {
-  this._limit = 8;
+  this._limit = 4;
   this._storage = LimitedArray(this._limit);
-  this._storage.collision = [];
+  this.counter = 0;
+
 };
 
 HashTable.prototype.insert = function(k, v) {
+  if (this.counter / this._limit > 0.75) {
+    this._limit *= 2;
+  }
+  if (this.counter / this._limit < 0.25) {
+    this._limit *= 0.5;
+  }
   var index = getIndexBelowMaxForKey(k, this._limit);
+  this._storage.each(function(element) {
+    if (Array.isArray(element)) {
+      HashTab
+    }
+    // same function here
+  });
   if (this._storage.get(index) && this._storage.get(index)[0] !== k) {
     var newArr = [];
     var current = this._storage.get(index);
@@ -17,6 +30,7 @@ HashTable.prototype.insert = function(k, v) {
   } else {
     this._storage.set(index, [k, v]);
   }
+  this.counter++;
 };
 
 HashTable.prototype.retrieve = function(k) {

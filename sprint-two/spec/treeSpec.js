@@ -48,5 +48,51 @@ describe('tree', function() {
     expect(tree.contains(5)).to.equal(true);
     expect(tree.contains(6)).to.equal(true);
   });
+  
+  it('should have advanced method removeFromParent and traverse', function() {
+    expect(tree.removeFromParent).to.be.a('function');
+    expect(tree.traverse).to.be.a('function');
+  });
+  
+  it('should have a parent property for all nodes', function() {
+    expect(tree.parent).to.equal(null);
+    tree.addChild(4);
+    expect(tree.children[0].parent).to.equal(tree);
+  });
+
+  it('should correctly disassociate parents and orphan children', function() {
+    tree.addChild(4);
+    tree.addChild(9);
+    tree.removeFromParent(9);
+    expect(tree.contains(9)).to.equal(false);
+  });
+  
+  it('should remove all children from tree after parents are removed', function() {
+    tree.addChild(4);
+    tree.addChild(9);
+    tree.addChild(20);
+    tree.children[0].addChild(1);
+    tree.removeFromParent(4);
+    expect(tree.contains(1)).to.equal(false);
+  });
+  
+  it('should run a callback function on every item in the tree', function() {
+    tree.addChild(1);
+    tree.addChild(4);
+    tree.children[0].addChild(1);
+    tree.children[0].children[0].addChild(9);
+    
+    var arr = [];
+    var callbackTest = function(x) {
+      arr.push(x * 2);
+    };
+    tree.traverse(callbackTest);
+    
+    expect(arr.includes(2)).to.equal(true);
+    expect(arr.includes(18)).to.equal(true);
+    expect(arr.includes(8)).to.equal(true);
+    expect(arr.includes(9)).to.equal(false);
+    
+  });
 
 });
