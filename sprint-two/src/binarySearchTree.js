@@ -4,6 +4,7 @@ var BinarySearchTree = function(value) {
 
   newTree.left = null;
   newTree.right = null;
+  newTree.parent = null;
 
   _.extend(newTree, bstMethods);
 
@@ -15,6 +16,7 @@ var bstMethods = {};
 bstMethods.insert = function(value) {
   
   var newNode = Node(value);
+  newNode.parent = this;
 
   //nodeIsGreater
   if (newNode.value > this.value) {
@@ -72,6 +74,25 @@ bstMethods.depthFirstLog = function(callback) {
   if (this.right !== null) {
     // callback(this.right.value);
     bstMethods.depthFirstLog.call(this.right, callback);
+  }
+};
+
+bstMethods.breadthFirstLog = function(callback) {
+  // callback(this.value);
+  if (this.parent === null) {
+    callback(this.value);
+  }
+  if (this.left) {
+    callback(this.left.value);
+  }
+  if (this.right) {
+    callback(this.right.value);
+  }
+  if (this.left) {
+    bstMethods.breadthFirstLog.call(this.left, callback);
+  }
+  if (this.right) {
+    bstMethods.breadthFirstLog.call(this.right, callback);
   }
 };
 

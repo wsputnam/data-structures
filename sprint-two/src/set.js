@@ -8,9 +8,7 @@ var setPrototype = {};
 
 setPrototype.add = function(item) {
   if (!this._storage[item]) {
-    this._storage[item] = 0;
-  } else {
-    this._storage[item]++;
+    this._storage['' + item] = item;
   }
 };
 

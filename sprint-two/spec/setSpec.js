@@ -29,5 +29,15 @@ describe('set', function() {
     expect(set.contains('Danny Glover')).to.equal(false);
     expect(set.contains('Susan Sarandon')).to.equal(true);
   });
+  it('should add non-string values', function() {
+    set.add(2);
+    set.add(3);
+    set.add([]);
+    set.add(false);
+    expect(set.contains(2)).to.equal(true);
+    expect(set.contains(4)).to.equal(false);
+    expect(set.contains(false)).to.equal(true);
+    expect(set.contains([])).to.equal(true);
+  });
 
 });
